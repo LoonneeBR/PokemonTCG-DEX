@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fogo Fantasmagórico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+
+    <div class="sidebar-header">
+        <img src="https://tcg.pokemon.com/assets/img/global/logos/pt-br/tcg-logo.png" class="logo">
+    </div>
+
+    <ul class="collection-list">
+
+        <li>
+    <a href="fogo-fantasmagorico.html">
+        🔥 Fogo Fantasmagórico
+    </a>
+</li>
+
+<li class="active">
+    <a href="mega-evolucao.html">
+        ⚡ Mega Evolução
+    </a>
+</li>
+
+    </ul>
+
+</div>
+
+<div class="main-content">
+
+<header>
+    <img src="https://i0.wp.com/thenerdsofcolor.org/wp-content/uploads/2025/10/pokemonmegaevol.jpg?fit=1240%2C702&ssl=1" class="logo">
+
+    <div id="stats">
+        <div id="progressText"></div>
+
+        <div class="progress-bar">
+            <div id="progressFill"></div>
+        </div>
+
+        <div id="foilCount"></div>
+    </div>
+
+    <div class="filters">
+        <button onclick="showAll()">Todas</button>
+        <button onclick="showOwned()">Possuo</button>
+        <button onclick="showMissing()">Faltam</button>
+    </div>
+
+   <button class="view-btn" id="viewBtn" onclick="toggleView()">
+    📋
+</button>
+
+</header>
+
+
+<div id="cards" class="cards"></div>
+
+<script>
+const collectionConfig = {
+    id: "mega",
+    totalCards: 188,
+    imagePattern:
+    "https://dz3we2x72f7ol.cloudfront.net/expansions/mega-evolution/pt-br/JL2G_PTBR_{id}.png"
+};
+</script>
+
+<script src="script.js"></script>
+
+</div>
+</body>
+</html>

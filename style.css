@@ -1,0 +1,357 @@
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:Arial, sans-serif;
+}
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:260px;
+    height:100vh;
+
+    background:#151515;
+
+    border-right:1px solid #333;
+
+    padding:20px;
+
+    overflow-y:auto;
+
+    z-index:1000;
+}
+
+.sidebar-header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+}
+
+.sidebar-header img{
+
+    width:80px;
+}
+
+.sidebar-header h3{
+
+    color:white;
+
+    margin-top:10px;
+}
+
+.collection-list{
+
+    list-style:none;
+
+    padding:0;
+}
+
+.collection-list li{
+
+    margin-bottom:10px;
+}
+
+.collection-list a{
+
+    display:block;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    color:white;
+
+    transition:.2s;
+}
+
+.collection-list a:hover{
+
+    background:#2b2b2b;
+}
+
+.collection-list .active a{
+
+    background:#f59e0b;
+
+    color:black;
+
+    font-weight:bold;
+}
+
+header{
+    text-align:center;
+    padding:20px;
+    background:#111;
+}
+
+/* Logo responsivo */
+.logo{
+    width:90%;
+    max-width:600px;
+    height:auto;
+    display:block;
+    margin:0 auto 20px auto;
+}
+
+/* Apenas as estatísticas ficam fixas */
+#stats{
+    position:sticky;
+    top:0;
+    background:#111;
+    padding:15px;
+    z-index:100;
+    box-shadow:0 2px 10px rgba(0,0,0,.5);
+}
+
+.progress-bar{
+    width:80%;
+    max-width:800px;
+    height:20px;
+    margin:10px auto;
+    background:#333;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+#progressFill{
+    height:100%;
+    width:0%;
+    background:limegreen;
+    transition:.3s;
+}
+
+
+.filters{
+    margin-top:15px;
+}
+
+.filters button{
+    padding:12px 18px;
+    margin:5px;
+
+    background:#222;
+    color:white;
+
+    border:1px solid #444;
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.filters button:hover{
+    background:#333;
+    transform:translateY(-2px);
+}
+
+.view-btn{
+    background:#f59f0b00 !important;
+    color:black !important;
+}
+
+.list-view{
+    display:flex !important;
+    flex-direction:column;
+    gap:5px;
+}
+
+.list-view .card{
+
+    display:flex;
+    align-items:center;
+
+    padding:10px;
+
+    border:1px solid #333;
+    border-radius:8px;
+}
+
+.list-view .card > img{
+    display:none;
+}
+
+.list-view .card-number{
+    margin:0;
+}
+
+.list-view .owned-indicator{
+
+    position:static;
+
+    opacity:1;
+
+    width:30px;
+    height:30px;
+
+    margin-right:8px;
+}
+
+.list-view .foil-btn{
+
+    position:static;
+
+    width:30px;
+    height:30px;
+
+    margin-right:8px;
+}
+
+.list-view .card{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:15px;
+    padding:20px;
+}
+
+.card{
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+    position:relative;
+}
+
+.card:hover{
+    transform:scale(1.03);
+}
+
+.card img{
+    width:100%;
+    border-radius:12px;
+    filter:grayscale(100%);
+    transition:.3s;
+}
+
+.card.owned img{
+    filter:none;
+}
+
+.card-number{
+    margin-top:8px;
+    font-weight:bold;
+}
+
+.foil-btn{
+    position:absolute;
+    top:8px;
+    right:8px;
+
+    width:35px;
+    height:35px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#444;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    transition:.3s;
+}
+
+.foil-btn.active{
+    background:gold;
+
+    box-shadow:
+        0 0 10px gold,
+        0 0 20px orange;
+}
+
+.owned-indicator{
+    position:absolute;
+
+    bottom:40px;
+    left:8px;
+
+    width:40px;
+    height:40px;
+
+    opacity:0;
+    transition:.3s;
+
+    z-index:999;
+}
+
+.owned-indicator img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+
+    position:relative;
+    z-index:999;
+}
+
+.card.owned .owned-indicator{
+    opacity:1;
+}
+.pokeball-animate{
+    animation:pokeballPop .4s ease;
+}
+
+@keyframes pokeballPop{
+
+    0%{
+        transform:scale(0) rotate(-180deg);
+    }
+
+    70%{
+        transform:scale(10.25) rotate(15deg);
+    }
+
+    100%{
+        transform:scale(1) rotate(0deg);
+    }
+}
+
+.hidden{
+    display:none !important;
+}
+
+.main-content{
+
+    margin-left:280px;
+}
+
+
+
+@media(max-width:768px){
+
+    .sidebar{
+
+        width:70px;
+    }
+
+    .collection-list a{
+
+        font-size:0;
+    }
+
+    .main-content{
+
+        margin-left:90px;
+    }
+
+}
+
