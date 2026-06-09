@@ -48,13 +48,15 @@ foilOwnedCards.includes(i)
 
 card.innerHTML = `
 
-    <div class="foil-btn ${foilActive}" title="Foil">
+    <div class="foil-btn ${foilActive}">
         ⭐
     </div>
 
-    <div class="owned-indicator" title="Gotcha">
-        <img src="3dpokeball.png" alt="Carta obtida">
+    <div class="owned-indicator">
+        <img src="3dpokeball.png">
     </div>
+
+    <div class="foil-effect"></div>
 
     <img src="${imageUrl}" loading="lazy">
 
@@ -71,7 +73,23 @@ foilButton.addEventListener("click",(e)=>{
 
     e.stopPropagation();
 
+    // Só permite marcar foil se possuir a carta
+    if(!card.classList.contains("owned")){
+
+        foilButton.animate([
+            {transform:"translateX(0px)"},
+            {transform:"translateX(-4px)"},
+            {transform:"translateX(4px)"},
+            {transform:"translateX(0px)"}
+        ],{
+            duration:250
+        });
+
+        return;
+    }
+
     foilButton.classList.toggle("active");
+    card.classList.toggle("foil");
 
     if(foilButton.classList.contains("active")){
 
@@ -88,56 +106,67 @@ foilButton.addEventListener("click",(e)=>{
 
     }
 
-   localStorage.setItem(
-    `foilOwnedCards_${collectionConfig.id}`,
-    JSON.stringify(foilOwnedCards)
-);
+    localStorage.setItem(
+        `foilOwnedCards_${collectionConfig.id}`,
+        JSON.stringify(foilOwnedCards)
+    );
 
     updateStats();
 
 });
 
-    card.addEventListener("click",()=>{
 
-        card.classList.toggle("owned");
+card.addEventListener("click",()=>{
 
-        
-const pokeball =
-card.querySelector(".owned-indicator img");
+    card.classList.toggle("owned");
 
-if(card.classList.contains("owned")){
+    const pokeball =
+    card.querySelector(".owned-indicator img");
 
-    pokeball.classList.remove("pokeball-animate");
+    if(card.classList.contains("owned")){
 
-    void pokeball.offsetWidth;
+        pokeball.classList.remove("pokeball-animate");
 
-    pokeball.classList.add("pokeball-animate");
-}
+        void pokeball.offsetWidth;
 
-        if(card.classList.contains("owned")){
+        pokeball.classList.add("pokeball-animate");
 
-            if(!ownedCards.includes(i)){
-                ownedCards.push(i);
-            }
-
-        }else{
-
-            ownedCards =
-            ownedCards.filter(
-                cardNumber => cardNumber !== i
-            );
+        if(!ownedCards.includes(i)){
+            ownedCards.push(i);
         }
 
-      localStorage.setItem(
-    `ownedCards_${collectionConfig.id}`,
-    JSON.stringify(ownedCards)
-);
+    }else{
 
-        updateStats();
-    });
+        ownedCards =
+        ownedCards.filter(
+            cardNumber => cardNumber !== i
+        );
 
-    container.appendChild(card);
-}
+        // Remove automaticamente o foil
+        foilOwnedCards =
+        foilOwnedCards.filter(
+            cardNumber => cardNumber !== i
+        );
+
+        foilButton.classList.remove("active");
+        card.classList.remove("foil");
+
+        localStorage.setItem(
+            `foilOwnedCards_${collectionConfig.id}`,
+            JSON.stringify(foilOwnedCards)
+        );
+    }
+
+    localStorage.setItem(
+        `ownedCards_${collectionConfig.id}`,
+        JSON.stringify(ownedCards)
+    );
+
+    updateStats();
+
+});
+
+container.appendChild(card);
 
 function toggleView(){
 
@@ -233,4 +262,4 @@ function showMissing(){
 
 }
 
-updateStats();
+updateStats();}
